@@ -1,0 +1,67 @@
+{
+  "name": "vue-use-stripe",
+  "version": "0.0.1",
+  "description": "Thin Vue 3 wrapper for Stripe.js",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && rollup -c",
+    "lint": "eslint --ext *.ts,.js --fix ./src/* && prettier --list-different --write \"**/*.{ts,js,json}\"",
+    "prepublishOnly": "yarn lint && yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frandiox/vue-use-stripe.git"
+  },
+  "keywords": [
+    "stripe",
+    "elements",
+    "vue",
+    "vue3",
+    "typescript"
+  ],
+  "author": "Fran Dios <me@frandiox.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frandiox/vue-use-stripe/issues"
+  },
+  "homepage": "https://github.com/frandiox/vue-use-stripe#readme",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "peerDependencies": {
+    "vue": "^3.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@stripe/stripe-js": "^1.9.0",
+    "@types/jest": "^26.0.10",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/eslint-config-prettier": "6.x",
+    "@vue/eslint-config-standard": "5.x",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "esbuild": "^0.6.25",
+    "eslint": "^6.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-prettier-vue": "^3.0.0-alpha.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-typescript": "^0.14.0",
+    "eslint-plugin-unicorn": "^21.0.0",
+    "eslint-plugin-vue": "^7.0.0-beta.2",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.3",
+    "rollup-plugin-dts": "^1.4.10",
+    "rollup-plugin-esbuild": "^2.4.2",
+    "typescript": "^3.9.7",
+    "vue": "^3.0.0-rc.5"
+  }
+}

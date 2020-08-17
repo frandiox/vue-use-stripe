@@ -1,0 +1,9 @@
+**/tests/unit/coverage/**
+**/node_modules/**
+**/dist/**
+**/_*
+**/*.min.js
+
+**/*.config.js
+**/coverage/**
+**/scripts/**
