@@ -12,6 +12,14 @@ import { StripeElement, StripeElementChangeEvent } from '@stripe/stripe-js'
 
 const emits = ['change', 'focus', 'blur', 'click', 'ready']
 
+export type ElementChangeEvent = StripeElementChangeEvent & {
+  value?: string
+  bankName?: string
+  branchName?: string
+  brand?: string
+  country?: string
+}
+
 export default defineComponent({
   name: 'StripeElement',
   props: {
@@ -34,15 +42,7 @@ export default defineComponent({
       props.element.on(
         // @ts-ignore
         change,
-        (
-          event: StripeElementChangeEvent & {
-            value?: string
-            bankName?: string
-            branchName?: string
-            brand?: string
-            country?: string
-          }
-        ) => emit(change, event)
+        (event: ElementChangeEvent) => emit(change, event)
       )
     }
 

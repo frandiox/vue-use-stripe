@@ -19,7 +19,7 @@ import {
   StripeElement,
 } from '@stripe/stripe-js'
 
-type ElementType = {
+export type ElementType = {
   type: StripeElementType
   options?:
     | StripeCardElementOptions
@@ -35,7 +35,7 @@ type ElementType = {
     | StripeP24BankElementOptions
 }
 
-type StripeOptions = {
+export type StripeOptions = {
   key: string
   elements?: ElementType[]
   constructorOptions?: StripeConstructorOptions
