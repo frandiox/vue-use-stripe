@@ -1,6 +1,6 @@
 {
   "name": "vue-use-stripe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Thin Vue 3 wrapper for Stripe.js",
   "main": "dist/index.umd.js",
   "module": "dist/index.esm.js",
