@@ -34,7 +34,7 @@ import { useStripe, StripeElement } from 'vue-use-stripe'
 export default defineComponent({
   components: { StripeElement },
   setup() {
-    const event = ref({})
+    const event = ref(null)
 
     const {
       stripe,
@@ -45,10 +45,10 @@ export default defineComponent({
     })
 
     const registerCard = () => {
-      if (event.complete) {
+      if (event.value?.complete) {
         // Refer to the official docs to see all the Stripe instance properties.
         // E.g. https://stripe.com/docs/js/setup_intents/confirm_card_setup
-        return stripe.value.confirmCardSetup('<client-secret>', {
+        return stripe.value?.confirmCardSetup('<client-secret>', {
           payment_method: {
             card: cardElement.value,
           },

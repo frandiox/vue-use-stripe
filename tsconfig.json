@@ -11,11 +11,11 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["jest"],
+    "types": ["jest", "vite/client"],
     "outDir": "",
     "declaration": true,
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "./example.ts"],
   "exclude": ["node_modules", "_*", "**/_*", "!__*", "!**/__*"]
 }
