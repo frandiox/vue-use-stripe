@@ -13,6 +13,8 @@ import {
   StripeIbanElementOptions,
   StripeIdealBankElementOptions,
   StripePaymentRequestButtonElementOptions,
+  StripeEpsBankElementOptions,
+  StripeP24BankElementOptions,
   StripeElementType,
   StripeElement,
 } from '@stripe/stripe-js'
@@ -29,6 +31,8 @@ type ElementType = {
     | StripeIbanElementOptions
     | StripeIdealBankElementOptions
     | StripePaymentRequestButtonElementOptions
+    | StripeEpsBankElementOptions
+    | StripeP24BankElementOptions
 }
 
 type StripeOptions = {
