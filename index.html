@@ -5,9 +5,92 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue Use Stripe Demo</title>
+
+  <!-- ** Toggle the following scripts to change in-browser Vue version ** -->
+  <script src="https://unpkg.com/vue@3"></script>
+  <!-- <script src="https://unpkg.com/vue@2"></script>
+  <script src="https://unpkg.com/@vue/composition-api@1.0.0-rc.1"></script> -->
 </head>
 <body>
   <div id="app"></div>
-  <script type="module" src="./example.ts"></script>
+
+  <!-- ** Toggle the following scripts use ESM+TS example or raw in-browser example ** -->
+  <!-- <script type="module" src="./example.ts"></script> -->
+  <script src="https://unpkg.com/vue-demi@0.6.0"></script>
+  <script type="module">
+    import './dist/index.umd.js'
+    import '@stripe/stripe-js'
+
+    const { createApp, h, ref, isVue2 } = window.VueDemi
+    const { useStripe, StripeElement } = window.VueUseStripe
+
+    createApp({
+      setup() {
+        const event = ref(null)
+
+        const {
+          stripe,
+          elements: [cardElement],
+        } = useStripe({
+          key: import.meta.env.VITE_STRIPE_PUBLIC_KEY,
+          elements: [{ type: 'card', options: {} }],
+        })
+
+        const registerCard = () => {
+          if (event.value?.complete) {
+            // Refer to the official docs to see all the Stripe instance properties.
+            // E.g. https://stripe.com/docs/js/setup_intents/confirm_card_setup
+            return stripe.value?.confirmCardSetup('<client-secret>', {
+              // eslint-disable-next-line @typescript-eslint/camelcase
+              payment_method: {
+                card: cardElement.value,
+              },
+            })
+          }
+        }
+
+        const onChange = (changeEvent) => {
+          event.value = changeEvent
+        }
+
+        return () =>
+          h(
+            'div',
+            { style: { maxWidth: '400px', margin: '20px auto' } },
+            [
+              h('div', {}, [
+                `Using UMD and Vue ${isVue2 ? 2 : 3}`,
+              ]),
+              // @ts-ignore
+              h(StripeElement, {
+                style: { margin: '20px 0', height: '20px' },
+                ...(isVue2
+                  ? {
+                      props: { element: cardElement.value },
+                      on: { change: onChange },
+                    }
+                  : { element: cardElement.value, onChange }),
+              }),
+              h(
+                'button',
+                // @ts-ignore
+                isVue2
+                  ? { on: { click: registerCard } }
+                  : { onClick: registerCard },
+                'Add'
+              ),
+              event?.value?.error
+                ? h(
+                    'div',
+                    { style: { marginTop: '20px', color: 'red' } },
+                    event.value.error.message
+                  )
+                : null,
+            ]
+          )
+      },
+    }).mount('#app')
+
+  </script>
 </body>
 </html>

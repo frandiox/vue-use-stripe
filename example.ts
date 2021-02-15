@@ -1,5 +1,5 @@
 import '@stripe/stripe-js'
-import { createApp, h, ref } from 'vue'
+import { createApp, h, ref, isVue2 } from 'vue-demi'
 import { useStripe, StripeElement, ElementChangeEvent } from './src'
 
 createApp({
@@ -27,16 +27,36 @@ createApp({
       }
     }
 
+    const onChange = (changeEvent: ElementChangeEvent) => {
+      event.value = changeEvent
+    }
+
     return () =>
-      h('div', {}, [
+      h('div', { style: { maxWidth: '400px', margin: '20px auto' } }, [
+        h('div', {}, [`Using ESM + TS and Vue ${isVue2 ? 2 : 3}`]),
+        // @ts-ignore
         h(StripeElement, {
-          element: cardElement.value,
-          onChange: (changeEvent: ElementChangeEvent) => {
-            event.value = changeEvent
-          },
+          style: { margin: '20px 0', height: '20px' },
+          ...(isVue2
+            ? {
+                props: { element: cardElement.value },
+                on: { change: onChange },
+              }
+            : { element: cardElement.value, onChange }),
         }),
-        h('button', { onClick: registerCard }, 'Add'),
-        event?.value?.error ? h('div', {}, event.value.error.message) : null,
+        h(
+          'button',
+          // @ts-ignore
+          isVue2 ? { on: { click: registerCard } } : { onClick: registerCard },
+          'Add'
+        ),
+        event?.value?.error
+          ? h(
+              'div',
+              { style: { marginTop: '20px', color: 'red' } },
+              event.value.error.message
+            )
+          : null,
       ])
   },
 }).mount('#app')

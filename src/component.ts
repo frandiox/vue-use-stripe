@@ -6,7 +6,7 @@ import {
   defineComponent,
   onMounted,
   watchEffect,
-} from 'vue'
+} from 'vue-demi'
 
 import { StripeElement, StripeElementChangeEvent } from '@stripe/stripe-js'
 
@@ -57,6 +57,12 @@ export default defineComponent({
       })
     })
 
-    return () => h('div', { ref: domRef })
+    return { domRef }
+
+    // -- Not supported in Vue 2 composition API => Rely on 'render' property
+    // return () => h('div', { ref: domRef })
+  },
+  render() {
+    return h('div', { ref: 'domRef' })
   },
 })

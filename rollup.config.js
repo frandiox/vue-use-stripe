@@ -5,11 +5,11 @@ import pkgJson from './package.json'
 
 const dist = 'dist'
 const name = 'VueUseStripe'
-const globals = { vue: 'Vue' }
+const globals = { 'vue-demi': 'VueDemi'  }
 
 const baseConfig = {
   input: 'src/index.ts',
-  external: Object.keys(pkgJson.peerDependencies),
+  external: [...Object.keys(pkgJson.peerDependencies), ...Object.keys(pkgJson.dependencies)],
   plugins: [
     esbuild({
       target: tsConfig.compilerOptions.target,

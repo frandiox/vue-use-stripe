@@ -1,4 +1,4 @@
-import { onMounted, Ref, ref, onBeforeUnmount } from 'vue'
+import { onMounted, Ref, ref, onBeforeUnmount } from 'vue-demi'
 import {
   StripeConstructorOptions,
   Stripe,

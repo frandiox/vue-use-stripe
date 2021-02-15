@@ -2,6 +2,8 @@
 
 This is a thin Vue 3 wrapper (0.7 KB gzipped) for Stripe.js written in TypeScript. It simply provides a function (Vue hook) to create Stripe elements and a component that conveniently emits events.
 
+Support for Vue 2 was added in `0.1.0` via `vue-demi`.
+
 ## Installation
 
 Add Stripe.js to `index.html` as recommended by Stripe:
@@ -26,6 +28,8 @@ yarn add vue-use-stripe
 If you are using TypeScript, make sure you also install the mentioned `@stripe/stripe-js` library as well to get proper types for Stripe. Note that, if you are adding the script tag direclty to `index.html`, then `@stripe/stripe-js` can be installed as a **dev dependency** (it will only be used for types, not bundled in your app).
 
 ## Usage
+
+### Vue 3 in ESM environment
 
 ```ts
 import { defineComponent, ref } from 'vue'
@@ -71,6 +75,27 @@ export default defineComponent({
   <button @click="registerCard">Add</button>
   <div v-if="event && event.error">{{ event.error.message }}</div>
 </template>
+```
+
+### Vue 2
+
+Install `@vue/composition-api` as a dependency. Everything else should be similar to the example above for Vue 3.
+
+### Downloading directly from CDN
+
+Make sure `vue-demi` is included before `vue-use-stripe`:
+
+```html
+<script src="https://unpkg.com/vue@3"></script>
+<!-- if using Vue 2 -->
+<!-- <script src="https://unpkg.com/@vue/composition-api@1.0.0-rc.1"></script> -->
+<script src="https://unpkg.com/vue-demi"></script>
+<script src="https://unpkg.com/vue-use-stripe"></script>
+
+<script>
+  const { useStripe, StripeElement } = window.VueUseStripe
+  // Same as Vue 3 example above
+</script>
 ```
 
 ### API
