@@ -2,10 +2,16 @@
   "name": "vue-use-stripe",
   "version": "0.0.2",
   "description": "Thin Vue 3 wrapper for Stripe.js",
-  "main": "dist/index.umd.js",
-  "module": "dist/index.esm.js",
-  "unpkg": "dist/index.min.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.esm.js",
+  "unpkg": "./dist/index.min.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
