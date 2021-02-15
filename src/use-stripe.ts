@@ -19,15 +19,16 @@ import {
 
 type ElementType = {
   type: StripeElementType
-  options?: StripeCardElementOptions &
-    StripeCardCvcElementOptions &
-    StripeCardExpiryElementOptions &
-    StripeCardNumberElementOptions &
-    StripeAuBankAccountElementOptions &
-    StripeFpxBankElementOptions &
-    StripeIbanElementOptions &
-    StripeIdealBankElementOptions &
-    StripePaymentRequestButtonElementOptions
+  options?:
+    | StripeCardElementOptions
+    | StripeCardCvcElementOptions
+    | StripeCardExpiryElementOptions
+    | StripeCardNumberElementOptions
+    | StripeAuBankAccountElementOptions
+    | StripeFpxBankElementOptions
+    | StripeIbanElementOptions
+    | StripeIdealBankElementOptions
+    | StripePaymentRequestButtonElementOptions
 }
 
 type StripeOptions = {
